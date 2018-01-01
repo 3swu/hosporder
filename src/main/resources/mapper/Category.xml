@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wulei.DAO.CategoryDao">
+    <select id="getCategoryList" resultType="com.wulei.Entity.Category">
+        SELECT catid, catname
+        FROM categories
+    </select>
+
+    <select id="getCategoryById" resultType="com.wulei.Entity.Category" parameterType="int">
+        SELECT catid, catname
+        FROM categories
+        WHERE catid=#{categoryId}
+    </select>
+
+    <select id="getCategoryByName" resultType="com.wulei.Entity.Category" parameterType="String">
+        SELECT catid, catname
+        FROM categories
+        WHERE catname=#{categoryName}
+    </select>
+</mapper>

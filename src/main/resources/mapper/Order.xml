@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wulei.DAO.OrderDao">
+    <insert id="insertOrder" parameterType="com.wulei.Entity.Order">
+        INSERT INTO orders
+        (orderid, customerid, dateid, status, time)
+        VALUES
+        (#{orderid}, #{customerid}, #{dateid}, #{status}, #{time})
+    </insert>
+
+    <update id="updateOrder" parameterType="com.wulei.Entity.Order">
+        UPDATE orders
+        set customerid = #{customerid}, dateid = #{dateid}, status = #{status}
+        WHERE orderid = #{orderid}
+    </update>
+
+    <delete id="deleteOrder" parameterType="int">
+        DELETE FROM orders
+        where orderid = #{orderId}
+    </delete>
+
+    <select id="getOrderListByDoctorId" parameterType="int" resultType="com.wulei.Entity.Order">
+        SELECT *
+        FROM orders
+        WHERE dateid IN
+        (SELECT dateid
+        FROM date
+        where doctorid = #{doctorId})
+    </select>
+
+    <select id="getOrderListByCustomerId" parameterType="int" resultType="com.wulei.Entity.Order">
+        SELECT *
+        FROM orders
+        WHERE customerid = #{customerId}
+    </select>
+
+    <select id="getOrderListByDateId" parameterType="int" resultType="com.wulei.Entity.Order">
+        SELECT *
+        FROM orders
+        WHERE dateid = #{dateId}
+    </select>
+
+    <select id="getOrder" parameterType="int" resultType="com.wulei.Entity.Order">
+        SELECT *
+        FROM orders
+        WHERE orderid = #{orderId}
+    </select>
+
+    <select id="queryOrder" parameterType="com.wulei.Entity.Order" resultType="com.wulei.Entity.Order">
+        SELECT *
+        FROM orders
+        WHERE customerid = #{customerid} AND dateid = #{dateid}
+    </select>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wulei.DAO.DateDao">
+    <insert id="insertDate" parameterType="com.wulei.Entity.Date">
+        INSERT INTO date
+        (name, doctorid, number, maxnumber)
+        VALUES
+        (#{name}, #{doctorid}, #{number}, #{maxnumber})
+    </insert>
+
+    <update id="updateDate" parameterType="com.wulei.Entity.Date">
+        UPDATE date
+        SET name = #{name}, doctorid = #{doctorid}, number = #{number}, maxnumber = #{maxnumber}
+        WHERE dateid = #{dateid}
+    </update>
+
+    <update id="makeNumberSubOne" parameterType="int">
+        UPDATE date
+        SET number = number - 1
+        WHERE dateid = #{dateid}
+    </update>
+
+    <update id="makeNumberAddOne" parameterType="int">
+        UPDATE date
+        SET number = number + 1
+        WHERE dateid = #{dateid}
+    </update>
+
+    <select id="getDateListByDoctorId" parameterType="int" resultType="com.wulei.Entity.Date">
+        SELECT *
+        FROM date
+        where doctorid = #{doctorid}
+    </select>
+
+    <select id="getAllDate" resultType="com.wulei.Entity.Date">
+        SELECT dateid, name
+        FROM date
+    </select>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wulei.DAO.CustomerDao">
+    <insert id="insertCustomer" parameterType="com.wulei.Entity.Customer">
+        INSERT INTO customer
+        (name, mobile)
+        VALUES
+        (#{name}, #{mobile})
+    </insert>
+
+    <select id="getCustomerById" parameterType="int" resultType="com.wulei.Entity.Customer">
+        SELECT customerid, name, mobile
+        FROM customer
+        WHERE customerid = #{customerid}
+    </select>
+
+    <select id="getCustomerByNameAndMobile" parameterType="com.wulei.Entity.Customer" resultType="com.wulei.Entity.Customer">
+        SELECT customerid, name, mobile
+        FROM customer
+        where name = #{name} AND mobile = #{mobile}
+    </select>
+</mapper>

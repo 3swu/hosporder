@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wulei.DAO.DoctorDao">
+    <insert id="insertDoctor" parameterType="com.wulei.Entity.Doctor">
+        INSERT INTO doctor
+        (doctorid, name, catid, description)
+        VALUES
+        (#{doctorid}, #{name}, #{catid}, #{description})
+    </insert>
+
+    <update id="updateDoctor" parameterType="com.wulei.Entity.Doctor">
+        UPDATE doctor
+        SET name = #{name}, catid = #{catid}, description = #{description}
+        WHERE doctorid = #{doctorid}
+    </update>
+
+    <select id="getDoctorByDoctorId" parameterType="int" resultType="com.wulei.Entity.Doctor">
+        SELECT *
+        FROM doctor
+        where doctorid = #{doctorid}
+    </select>
+
+    <select id="getDoctorList" parameterType="int" resultType="com.wulei.Entity.Doctor">
+        SELECT *
+        FROM doctor
+        WHERE catid = #{categoryid}
+    </select>
+
+    <select id="searchDoctor" parameterType="String" resultType="com.wulei.Entity.Doctor">
+        SELECT *
+        FROM doctor
+        WHERE name LIKE #{name}
+    </select>
+
+</mapper>

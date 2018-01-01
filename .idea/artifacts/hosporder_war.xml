@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hosporder:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="hosp-order.war">
+      <element id="artifact" artifact-name="hosporder:war exploded" />
+    </root>
+  </artifact>
+</component>
